@@ -10,7 +10,8 @@ use App\Livewire\Auth\Verify;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Home;
 use App\Livewire\Liked;
-use App\Livewire\Project;
+use App\Livewire\Projects\Index as ProjectIndex;
+use App\Livewire\Projects\Create as ProjectCreate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,7 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', Logout::class)
         ->name('logout');
 
-    Route::get('projects', Project::class)
+    Route::get('projects', ProjectIndex::class)
+        ->name('projects');
+    Route::get('projects/create', ProjectCreate::class)
         ->name('projects');
 
     Route::get('liked', Liked::class)

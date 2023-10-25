@@ -4,11 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Button extends Component
+class Link extends Component
 {
     public $to = '#';
-
-    public $type = 'button';
 
     public $primary = false;
 
@@ -25,7 +23,7 @@ class Button extends Component
 
     public function render()
     {
-        return view('livewire.button', [
+        return view('livewire.link', [
             'buttonClass' => $this->getButtonClass()
         ]);
     }

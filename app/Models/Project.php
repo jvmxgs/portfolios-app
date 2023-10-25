@@ -10,4 +10,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Project extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'published'
+    ];
 }

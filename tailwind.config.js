@@ -14,7 +14,8 @@ module.exports = {
             'light-blue': '#A4D8F7',
             'dark-blue': '#0C1E5B',
             'bittersweet': '#FF6966',
-            'manatee': '#888FA7'
+            'manatee': '#888FA7',
+            'azureish-white': '#D3DDEC'
         }
     },
     variants: {

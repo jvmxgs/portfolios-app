@@ -7,16 +7,13 @@
         </section>
         <section class="h-12 flex justify-between items-center">
             <div class="flex gap-5 h-12">
-                <div class="h-full bg-white rounded-lg text-dark-blue font-bold text-xs p-5 flex items-center gap-2.5">
-                    <img src="https://i.pravatar.cc/300" class="w-[30px] h-[30px] rounded-full"/>
-                    <span class="flex items-center">Victor Gomez<x-icon name="chevron-down" mini /></span>
-                </div>
+                <livewire:profile>
                 <livewire:button text='Account in review'>
                 <div class="rounded-lg bg-white flex justify-center items-center w-[501px] px-5">
                     <input type="text" class="flex-grow text-sm border-0 px-0 w-36 h-5 border-transparent focus:border-transparent focus:ring-0" />
-                    <button class="capitalize text-sm text-dark-blue font-bold">Search</button>
+                    <button class="capitalize text-sm text-dark-blue font-bold flex gap-2"><x-heroicons::mini.solid.magnifying-glass class="w-5 h-5" /> Search</button>
                 </div>
-                <livewire:button primary text='Create' />
+                <livewire:link primary text='Create' to='/projects/create' />
             </div>
         </section>
         <nav class="w-full h-24 bg-white rounded-xl flex items-center p-9">
