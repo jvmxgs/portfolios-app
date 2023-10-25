@@ -24,7 +24,6 @@ class Create extends Component
 
     public function save()
     {
-        info('Creating project - - - - - - - - - - - - - - - - - -');
         $this->validate();
 
         $project = Project::create(

@@ -21,4 +21,11 @@ class Project extends Model implements HasMedia
         'description',
         'published'
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('images')
+            ->singleFile();
+    }
 }

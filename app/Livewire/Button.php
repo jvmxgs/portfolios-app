@@ -10,6 +10,8 @@ class Button extends Component
 
     public $type = 'button';
 
+    public $click = '';
+
     public $primary = false;
 
     public string $text = 'Click Me';

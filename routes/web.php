@@ -12,6 +12,7 @@ use App\Livewire\Home;
 use App\Livewire\Liked;
 use App\Livewire\Projects\Index as ProjectIndex;
 use App\Livewire\Projects\Create as ProjectCreate;
+use App\Livewire\Projects\Edit as ProjectEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::get('projects', ProjectIndex::class)
         ->name('projects');
     Route::get('projects/create', ProjectCreate::class)
+        ->name('projects');
+    Route::get('projects/{id}/edit', ProjectEdit::class)
         ->name('projects');
 
     Route::get('liked', Liked::class)

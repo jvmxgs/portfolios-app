@@ -9,8 +9,10 @@
                     </p>
                     <span class="rounded-md bg-clip-text text-dark-blue font-bold [text-shadow:_0_1px_0_rgb(255_255_255_/_40%)]">{{ $project->title }}</span>
                     <div class="flex justify-end gap-3">
-                        <x-icon class="w-6 h-6 text-manatee" name="pencil-square" variant="solid" />
-                        <x-icon class="w-6 h-6 text-manatee" name="trash" variant="solid" />
+                        <a href="/projects/{{ $project->id }}/edit">
+                            <x-icon class="w-6 h-6 text-manatee" name="pencil-square" variant="solid" />
+                        </a>
+                        <button @click="$dispatch('togglePopup', {id: {{ $project->id }} })"><x-icon class="cursor-pointer w-6 h-6 text-manatee" name="trash" variant="solid" /></button>
                     </div>
                 </section>
             </article>
@@ -19,4 +21,5 @@
     <section class="text-sm text-manatee">
         {{ $projects->links() }}
     </section>
+    <livewire:popup text='Are you sure you want delete the item?' />
 </div>

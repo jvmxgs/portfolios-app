@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -15,7 +16,14 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::factory(50)->create();
+        $projects = Project::factory(50)->make();
+        $users = User::all();
+
+        $projects->each(function ($project) use ($users) {
+           $project->user_id = $users->random()->id;
+        });
+
+        Project::insert($projects->toArray());
 
         $projects = Project::all();
 
