@@ -4,9 +4,18 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
+                'tilt-neon': 'Tilt Neon'
             },
         },
+        colors: {
+            'white': '#FFFFFF',
+            'black': '#000000',
+            'light-blue': '#A4D8F7',
+            'dark-blue': '#0C1E5B',
+            'bittersweet': '#FF6966',
+            'manatee': '#888FA7'
+        }
     },
     variants: {
         extend: {

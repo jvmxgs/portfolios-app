@@ -53,3 +53,7 @@
 [x-cloak] {
     display: none;
 }
+
+.bg-page {
+    background: var(--background-mix-linear-background, linear-gradient(121deg, #FFE7E7 3.53%, #D1DCEB 58.36%, #E9F2FD 100%));
+}

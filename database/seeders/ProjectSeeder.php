@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Portfolio;
+use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PortfolioSeeder extends Seeder
+class ProjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Portfolio::factory(50)->create();
+        Project::factory(50)->create();
     }
 }

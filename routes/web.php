@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\EmailVerificationController;
-use App\Http\Controllers\Auth\LogoutController;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Passwords\Confirm;
 use App\Livewire\Auth\Passwords\Email;
@@ -9,6 +8,9 @@ use App\Livewire\Auth\Passwords\Reset;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
 use App\Livewire\Auth\Logout;
+use App\Livewire\Home;
+use App\Livewire\Liked;
+use App\Livewire\Project;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+Route::get('/', Home::class)->name('home');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -48,13 +50,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('logout', Logout::class)
         ->name('logout');
+
+    Route::get('projects', Project::class)
+        ->name('projects');
+
+    Route::get('liked', Liked::class)
+        ->name('liked');
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')
         ->name('verification.verify');
-
-    Route::post('logout', LogoutController::class)
-        ->name('logout');
 });
