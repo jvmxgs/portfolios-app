@@ -8,6 +8,8 @@ class Link extends Component
 {
     public $to = '#';
 
+    public $class = '';
+
     public $primary = false;
 
     public string $text = 'Click Me';

@@ -26,9 +26,11 @@ class Create extends Component
     {
         $this->validate();
 
-        $project = Project::create(
-            $this->only(['title', 'description', 'published'])
-        );
+        $data = $this->only(['title', 'description', 'published']);
+
+        $data['user_id'] = auth()->user()->id;
+
+        $project = Project::create($data);
 
         $project
             ->addMedia($this->image)

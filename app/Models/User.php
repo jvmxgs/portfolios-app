@@ -45,6 +45,17 @@ class User extends Authenticatable implements HasMedia
         'password' => 'hashed',
     ];
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedProjects()
+    {
+        return $this->belongsToMany(Project::class, 'likes', 'user_id', 'project_id')
+            ->where('published', 1);
+    }
+
     public function registerMediaCollections(): void
     {
         $this

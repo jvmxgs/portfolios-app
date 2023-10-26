@@ -25,7 +25,7 @@ class Index extends Component
     public function render()
     {
         $projects = ModelsProject::query()
-            //->where()
+            ->where('user_id', auth()->user()->id)
             ->orderBy('updated_at', 'desc')
             ->paginate(9);
 

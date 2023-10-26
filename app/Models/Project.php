@@ -19,8 +19,37 @@ class Project extends Model implements HasMedia
     protected $fillable = [
         'title',
         'description',
-        'published'
+        'published',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function isLikedByAuthenticatedUser()
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            return false;
+        }
+
+        $this->load('likes');
+
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function getIsLikedAttribute()
+    {
+        return $this->isLikedByAuthenticatedUser();
+    }
 
     public function registerMediaCollections(): void
     {

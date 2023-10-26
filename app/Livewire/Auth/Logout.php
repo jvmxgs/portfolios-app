@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Logout extends Component
 {
+    public $class = '';
+
     public function logout()
     {
         Auth::logout();
