@@ -2,11 +2,11 @@
 
 An app of portfolios
 
-# Requirements
+## Requirements
 	- Git
     - Docker
 
-# Install
+## Install
 
 #### Clone the repo
 
