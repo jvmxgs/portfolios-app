@@ -2,7 +2,7 @@
 
 An app of portfolios
 
-![Portfolios app](https://raw.githubusercontent.com/jvmxgs/portfolios-app/fe587b25cf66d4f874b4adf9b6381050e56dca63/public/screenshot.png) "Portfolios app")
+![Portfolios app](https://raw.githubusercontent.com/jvmxgs/portfolios-app/fe587b25cf66d4f874b4adf9b6381050e56dca63/public/screenshot.png "Portfolios app")
 
 
 ## Requirements
