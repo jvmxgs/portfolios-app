@@ -22,13 +22,6 @@ cd portfolios-app
 ```
 
 
-#### Enter on the project folder
-
-```
-cd portfolios-app
-```
-
-
 #### Copy the .env.example to .env
 
 ```
