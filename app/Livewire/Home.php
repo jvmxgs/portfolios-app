@@ -46,6 +46,6 @@ class Home extends Component
             ->orderBy('updated_at', 'desc')
             ->paginate(9);
 
-        return view('livewire.home', compact('projects'))->extends('layouts.admin');
+        return view('livewire.home', compact('projects'))->extends('layouts.admin.default');
     }
 }

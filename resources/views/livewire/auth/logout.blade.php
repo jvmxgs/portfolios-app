@@ -1,1 +1,1 @@
-<x-icon name="arrow-right-on-rectangle" class="text-manatee cursor-pointer {{ $class }}" wire:click="logout" />
+<x-icon name="logout" class="text-manatee cursor-pointer w-6 h-6 {{ $class }}" wire:click="logout" />

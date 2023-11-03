@@ -1,5 +1,5 @@
 <li>
-  <a href="{{ $to }}" class="h-10 {{ $activeRoute ? 'bg-bittersweet text-white' : 'bg-white text-dark-blue' }}  hover:bg-bittersweet rounded-xl px-10 flex items-center text-sm font-bold hover:text-white">
+  <a href="{{ $to }}" class="h-10 px-10 flex items-center text-sm font-bold {{ $buttonClass }}">
     {{ $label }}
   </a>
 </li>

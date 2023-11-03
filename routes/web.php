@@ -56,9 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::get('projects', ProjectIndex::class)
         ->name('projects');
     Route::get('projects/create', ProjectCreate::class)
-        ->name('projects');
+        ->name('projects.create');
     Route::get('projects/{id}/edit', ProjectEdit::class)
-        ->name('projects');
+        ->name('projects.edit');
 
     Route::get('liked', Liked::class)
         ->name('liked');

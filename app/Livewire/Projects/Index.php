@@ -29,6 +29,6 @@ class Index extends Component
             ->orderBy('updated_at', 'desc')
             ->paginate(9);
 
-        return view('livewire.projects.index', compact('projects'))->extends('layouts.admin');
+        return view('livewire.projects.index', compact('projects'))->extends('layouts.admin.projects');
     }
 }

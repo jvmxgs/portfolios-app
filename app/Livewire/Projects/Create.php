@@ -41,6 +41,6 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.projects.create')->extends('layouts.admin');
+        return view('livewire.projects.create')->extends('layouts.admin.projects');
     }
 }

@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @hasSection('title')
 
-            <title>@yield('title') - {{ config('app.name') }}</title>
+        <title>@yield('title') - {{ config('app.name') }}</title>
         @else
-            <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') }}</title>
         @endif
 
         <!-- Favicon -->
@@ -20,6 +20,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
 
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @wireUiScripts
         @livewireStyles
         @livewireScripts
 

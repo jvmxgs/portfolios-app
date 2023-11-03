@@ -32,6 +32,6 @@ class Liked extends Component
 
         $projects = $user->likedProjects()->paginate(9);
 
-        return view('livewire.liked', compact('projects'))->extends('layouts.admin');
+        return view('livewire.liked', compact('projects'))->extends('layouts.admin.default');
     }
 }

@@ -51,6 +51,6 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.projects.edit')->extends('layouts.admin');
+        return view('livewire.projects.edit')->extends('layouts.admin.default');
     }
 }

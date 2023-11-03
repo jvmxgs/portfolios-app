@@ -19,7 +19,7 @@ class Link extends Component
         if ($this->primary) {
             return 'text-white bg-bittersweet';
         } else {
-            return 'bg-light-blue text-dark-blue';
+            return 'bg-sail text-dark-blue';
         }
     }
 
