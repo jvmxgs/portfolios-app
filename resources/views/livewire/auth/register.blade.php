@@ -3,7 +3,7 @@
 <div>
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="{{ route('home') }}">
-            <h1 class="text-5xl font-tilt-neon text-dark-blue mx-auto text-center">Portfolio</h1>
+            <h1 class="text-5xl font-tilt-neon text-downriver mx-auto text-center">Portfolio</h1>
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-manatee leading-9">
@@ -22,7 +22,7 @@
         <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
             <form wire:submit.prevent="register">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-dark-blue leading-5">
+                    <label for="name" class="block text-sm font-medium text-downriver leading-5">
                         Name
                     </label>
 
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <label for="email" class="block text-sm font-medium text-dark-blue leading-5">
+                    <label for="email" class="block text-sm font-medium text-downriver leading-5">
                         Email address
                     </label>
 
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <label for="password" class="block text-sm font-medium text-dark-blue leading-5">
+                    <label for="password" class="block text-sm font-medium text-downriver leading-5">
                         Password
                     </label>
 
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <label for="password_confirmation" class="block text-sm font-medium text-dark-blue leading-5">
+                    <label for="password_confirmation" class="block text-sm font-medium text-downriver leading-5">
                         Confirm Password
                     </label>
 

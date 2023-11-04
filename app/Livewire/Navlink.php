@@ -34,7 +34,7 @@ class Navlink extends Component
             return 'bg-bittersweet text-white';
         }
 
-        return 'bg-white text-dark-blue';
+        return 'bg-white text-downriver';
     }
 
     private function getSecondaryClass()
@@ -43,7 +43,7 @@ class Navlink extends Component
             return 'border-l-bittersweet text-bittersweet';
         }
 
-        return 'border-l-white text-dark-blue';
+        return 'border-l-white text-downriver';
     }
 
     public function mount()

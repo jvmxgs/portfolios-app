@@ -17,7 +17,10 @@ return new class extends Migration
             $table->longText('description');
             $table->boolean('published')->defaultFalse();
             $table->foreignId('user_id')->constrained();
+            $table->boolean('trashed')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
