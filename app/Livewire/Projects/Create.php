@@ -10,12 +10,15 @@ use App\Notifications\ProjectScheduledNotification;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use WireUi\Traits\Actions;
 
 class Create extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, Actions;
 
     private $project = null;
+
+    public $published = false;
 
     #[Rule('required')]
     public $title;
@@ -29,8 +32,6 @@ class Create extends Component
     #[Rule('required_if:scheduled,true', 'Publish date')]
     public $scheduledAt = null;
 
-    public $published = false;
-
     public bool $scheduled = false;
 
     public function checkboxToogle()
@@ -40,13 +41,23 @@ class Create extends Component
 
     public function saveDraft()
     {
-        //
+        $this->scheduled = false;
+        $this->notification()->success(
+            $title = 'Profile saved',
+            $description = 'Your profile was successfully saved'
+        );
+        session()->flash('message', 'This is a flash message.');
+        $this->save();
     }
 
     public function publish()
     {
+        $this->published = true;
         $this->save();
-        $this->project->user->notify(new ProjectPublishedNotification($this->project));
+
+        if (! $this->scheduled) {
+            $this->project->user->notify(new ProjectPublishedNotification($this->project));
+        }
     }
 
     public function save()

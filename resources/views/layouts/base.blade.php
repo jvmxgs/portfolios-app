@@ -30,5 +30,6 @@
 
     <body class="bg-page">
         @yield('body')
+        <x-notifications />
     </body>
 </html>
