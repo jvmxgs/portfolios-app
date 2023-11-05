@@ -3,14 +3,14 @@
 namespace App\Livewire\Projects;
 
 use App\Models\Project as ModelsProject;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\Actions;
 
 class Index extends Component
 {
-    use WithPagination, Actions;
+    use WithPagination, LivewireAlert;
 
     #[On('deleteProject')]
     public function deleteProject($id)
@@ -18,11 +18,12 @@ class Index extends Component
         ModelsProject::find($id)->delete();
     }
 
-    #[On('projectSavedAsDraft')]
-    public function projectSavedAsDraft()
+    public function mount()
     {
-	$this->notification()->success('Project saved', 'Your project was saved successfully as draft');
-	info('project saved as draft');
+        if (session()->has('message')) {
+            $message = session('message');
+            $this->alert($message['type'], $message['text']);
+        }
     }
 
     public function openPopup()

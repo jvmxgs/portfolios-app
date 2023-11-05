@@ -31,4 +31,22 @@
         {{ $projects->links() }}
     </section>
     <livewire:popup text='Are you sure you want delete the item?' />
+    @if(session()->has('message'))
+        <script>
+            window.$wireui.confirmNotification({
+                title: 'Are you Sure?',
+                description: 'Save the information?',
+                icon: 'question',
+                accept: {
+                    label: 'Yes, save it',
+                    method: 'save',
+                    params: 'Saved'
+                },
+                reject: {
+                    label: 'No, cancel',
+                    method: 'cancel'
+                }
+            })
+        </script>
+    @endif
 </div>

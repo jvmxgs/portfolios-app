@@ -14,6 +14,13 @@ class PublishProject implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * Delete the job if its models no longer exist.
+     *
+     * @var bool
+     */
+    public $deleteWhenMissingModels = true;
+
     public $project;
 
     /**
@@ -32,7 +39,7 @@ class PublishProject implements ShouldQueue
     {
         $project = $this->project;
 
-        if (!$project->trashed) {
+        if (!$project->trashed()) {
             $project->published = true;
             $project->published_at = now();
             $project->save();

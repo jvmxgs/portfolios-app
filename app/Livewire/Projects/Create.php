@@ -7,14 +7,14 @@ use Livewire\Attributes\Rule;
 use App\Models\Project;
 use App\Notifications\ProjectPublishedNotification;
 use App\Notifications\ProjectScheduledNotification;
-use Illuminate\Support\Facades\Date;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use WireUi\Traits\Actions;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Create extends Component
 {
-    use WithFileUploads, Actions;
+    use WithFileUploads, LivewireAlert;
 
     private $project = null;
 
@@ -43,40 +43,41 @@ class Create extends Component
 
     public function saveDraft()
     {
-        $this->dispatch('projectSavedAsDraft');
         $this->scheduled = false;
-	$this->save();
-	
+	    $this->save();
+        session()->flash('message', ['type' => 'success', 'text' => "Project <span class='text-bittersweet'>{$this->project->title}</span> saved as draft"]);
     }
 
     public function shouldBeScheduled()
     {
-	$this->scheduleParsedDate = Date::parse($this->scheduledAt);
-	return $this->scheduled && $this->scheduledAt > now();
+	    $this->scheduleParsedDate = Carbon::parse($this->scheduledAt);
+	    return $this->scheduled && $this->scheduleParsedDate->isFuture();
     }
 
     public function publish()
     {
-	if ($this->shouldBeScheduled()) {
-	    $this->schedule();
-	    return;
-	}
+	    if ($this->shouldBeScheduled()) {
+	        $this->schedule();
+	        return;
+	    }
 
-	$this->published = true;
-	$this->save();
-	$this->project->user->notify(new ProjectPublishedNotification($this->project));
+	    $this->published = true;
+	    $this->save();
+	    $this->project->user->notify(new ProjectPublishedNotification($this->project));
+        session()->flash('message', ['type' => 'success', 'text' => "Project <span class='text-bittersweet'>{$this->project->title}</span> was published"]);
     }
 
     public function schedule()
     {
-	$this->save();
-	dispatch(new PublishProject($this->project))->delay($this->scheduleParsedDate);    
-     	$this->project->user->notify(new ProjectScheduledNotification($this->project));   
+	    $this->save();
+	    dispatch(new PublishProject($this->project))->delay($this->scheduleParsedDate);
+     	$this->project->user->notify(new ProjectScheduledNotification($this->project));
+        session()->flash('message', ['type' => 'success', 'text' => "Project <span class='text-bittersweet'>{$this->project->title}</span> was scheduled to be published at <span class='text-manatee'>{$this->scheduleParsedDate->diffForHumans()} </span>"]);
     }
 
     public function save()
     {
-	$this->validate();
+	    $this->validate();
 
         $data = $this->only(['title', 'description', 'published']);
 
@@ -88,7 +89,7 @@ class Create extends Component
             ->addMedia($this->image)
             ->toMediaCollection('images');
 
-        return $this->redirect('/projects');
+        return $this->redirect('/projects', true);
     }
 
     public function render()
