@@ -18,6 +18,8 @@ class Create extends Component
 
     private $project = null;
 
+    private $scheduleParsedDate = null;
+
     public $published = false;
 
     #[Rule('required')]
@@ -41,39 +43,46 @@ class Create extends Component
 
     public function saveDraft()
     {
+        $this->dispatch('projectSavedAsDraft');
         $this->scheduled = false;
-        $this->notification()->success(
-            $title = 'Profile saved',
-            $description = 'Your profile was successfully saved'
-        );
-        session()->flash('message', 'This is a flash message.');
-        $this->save();
+	$this->save();
+	
+    }
+
+    public function shouldBeScheduled()
+    {
+	$this->scheduleParsedDate = Date::parse($this->scheduledAt);
+	return $this->scheduled && $this->scheduledAt > now();
     }
 
     public function publish()
     {
-        $this->published = true;
-        $this->save();
+	if ($this->shouldBeScheduled()) {
+	    $this->schedule();
+	    return;
+	}
 
-        if (! $this->scheduled) {
-            $this->project->user->notify(new ProjectPublishedNotification($this->project));
-        }
+	$this->published = true;
+	$this->save();
+	$this->project->user->notify(new ProjectPublishedNotification($this->project));
+    }
+
+    public function schedule()
+    {
+	$this->save();
+	dispatch(new PublishProject($this->project))->delay($this->scheduleParsedDate);    
+     	$this->project->user->notify(new ProjectScheduledNotification($this->project));   
     }
 
     public function save()
     {
-        $this->validate();
+	$this->validate();
 
         $data = $this->only(['title', 'description', 'published']);
 
         $data['user_id'] = auth()->user()->id;
 
         $this->project = Project::create($data);
-
-        if ($this->scheduled) {
-            dispatch(new PublishProject($this->project))->delay(Date::parse($this->scheduledAt));
-            $this->project->user->notify(new ProjectScheduledNotification($this->project));
-        }
 
         $this->project
             ->addMedia($this->image)

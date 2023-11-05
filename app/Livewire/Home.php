@@ -9,7 +9,6 @@ use Livewire\Component;
 
 class Home extends Component
 {
-
     #[On('toogleLike')]
     public function toogleLike($id)
     {

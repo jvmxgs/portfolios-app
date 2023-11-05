@@ -40,12 +40,7 @@
         </div>
         <div class="flex h-12 col-span-2 col-start-2 justify-end">
             <x-button secondary label="Save as draft" wire:click="saveDraft" class="px-8 rounded-r-none rounded-l-lg" />
-            <x-button primary label="Publish" wire:click="publish" class="px-8 rounded-l-none rounded-r-lg border-l border-white" />
+            <x-button primary label="{{ $scheduledAt }} Publish" wire:click="publish" class="px-8 rounded-l-none rounded-r-lg border-l border-white" />
         </div>
-        @if (session()->has('message'))
-            <div class="alert alert-success">
-                {{ session('message') }}
-            </div>
-        @endif
     </section>
 </form>

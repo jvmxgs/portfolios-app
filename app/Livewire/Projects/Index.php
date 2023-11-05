@@ -6,15 +6,23 @@ use App\Models\Project as ModelsProject;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use WireUi\Traits\Actions;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination, Actions;
 
     #[On('deleteProject')]
     public function deleteProject($id)
     {
         ModelsProject::find($id)->delete();
+    }
+
+    #[On('projectSavedAsDraft')]
+    public function projectSavedAsDraft()
+    {
+	$this->notification()->success('Project saved', 'Your project was saved successfully as draft');
+	info('project saved as draft');
     }
 
     public function openPopup()
