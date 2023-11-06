@@ -50,7 +50,8 @@ module.exports = {
             'downriver': '#0C1E5B',
             'bittersweet': '#FF6966',
             'manatee': '#888FA7',
-            'azureish-white': '#D3DDEC'
+            'azureish-white': '#D3DDEC',
+            'transparent': 'transparent'
         }
     },
     variants: {

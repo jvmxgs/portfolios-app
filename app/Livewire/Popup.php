@@ -11,18 +11,25 @@ class Popup extends Component
 
     public $text = '';
 
-    public $projectId = '';
+    public $buttonText = '';
 
-    #[On('togglePopup')]
-    public function togglePopup($id)
+    public $action = '';
+
+    public $data = null;
+
+    #[On('showPopup')]
+    public function showPopup($data, $action, $text, $buttonText)
     {
         $this->isPopupVisible = true;
-        $this->projectId = $id;
+        $this->data = $data;
+        $this->action = $action;
+        $this->text = $text;
+        $this->buttonText = $buttonText;
     }
 
-    public function delete()
+    public function triggerAction()
     {
-        $this->dispatch('deleteProject', id: $this->projectId);
+        $this->dispatch($this->action, $this->data);
         $this->isPopupVisible = false;
     }
 

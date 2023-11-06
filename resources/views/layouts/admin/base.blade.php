@@ -20,7 +20,7 @@
                 <!-- <livewire:button text='Account in review'> -->
                 <div class="rounded-lg bg-white flex justify-start items-center w-full h-12 md:w-[501px] px-5">
                     <input type="text" wire:model="searchInput" class="text-sm border-0 px-0 w-full h-5 border-transparent focus:border-transparent focus:ring-0" />
-                    <button @click="$dispatch('search', 'dddddddd')" class="capitalize text-sm text-downriver font-bold flex gap-2"><x-icon name="search" class="stroke-downriver cursor-pointer w-5 h-5" /> Search</button>
+                    <button @click="$dispatch('searchh')" class="capitalize text-sm text-downriver font-bold flex gap-2"><x-icon name="search" class="stroke-downriver cursor-pointer w-5 h-5" /> Search</button>
                 </div>
                 <livewire:link primary text='Create' to='/projects/create' class="hidden md:flex"/>
             </div>

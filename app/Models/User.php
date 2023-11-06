@@ -56,6 +56,12 @@ class User extends Authenticatable implements HasMedia
             ->where('published', 1);
     }
 
+    public function trashedProjects()
+    {
+        return $this->hasMany(Project::class)
+            ->onlyTrashed();
+    }
+
     public function registerMediaCollections(): void
     {
         $this

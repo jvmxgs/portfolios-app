@@ -3,6 +3,7 @@
 namespace App\Livewire\Projects;
 
 use App\Models\Project as ModelsProject;
+use App\Notifications\ProjectMovedToTrashNotification;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,10 +13,17 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert;
 
-    #[On('deleteProject')]
-    public function deleteProject($id)
+    #[On('deleteSelectedProjects')]
+    public function deleteSelectedProjects($data)
     {
-        ModelsProject::find($id)->delete();
+        $user = auth()->user();
+        $projects = ModelsProject::whereIn('id', $data)->get();
+
+        $projects->each->delete();
+
+        $this->alert('success', count($data) . " projects moved to trash successfully");
+        $projectNames = $projects->pluck('title')->all();
+        $user->notify(new ProjectMovedToTrashNotification($projectNames));
     }
 
     public function mount()
@@ -24,11 +32,6 @@ class Index extends Component
             $message = session('message');
             $this->alert($message['type'], $message['text']);
         }
-    }
-
-    public function openPopup()
-    {
-        $this->dispatch('openPopup');
     }
 
     public function render()

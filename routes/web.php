@@ -13,6 +13,7 @@ use App\Livewire\Liked;
 use App\Livewire\Projects\Index as ProjectIndex;
 use App\Livewire\Projects\Create as ProjectCreate;
 use App\Livewire\Projects\Edit as ProjectEdit;
+use App\Livewire\Projects\Trashed;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +63,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('liked', Liked::class)
         ->name('liked');
+
+    Route::get('projects/trashed', Trashed::class)
+        ->name('trashed');
 });
 
 Route::middleware('auth')->group(function () {

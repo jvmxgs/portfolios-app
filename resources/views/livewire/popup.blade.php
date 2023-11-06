@@ -7,8 +7,8 @@
                     <button type="button" wire:click="closePopup" class="flex justify-center items-center w-40 h-full rounded-lg font-bold text-xs bg-sail text-downriver">
                         Close
                     </button>
-                    <button type="button" wire:click="delete" class="flex justify-center items-center w-40 h-full rounded-lg font-bold text-xs text-white bg-bittersweet">
-                        Delete
+                    <button type="button" wire:click="triggerAction" class="flex justify-center items-center w-40 h-full rounded-lg font-bold text-xs text-white bg-bittersweet">
+                        {{ $buttonText }}
                     </button>
                 </div>
             </section>

@@ -1,38 +1,27 @@
 <div class="flex flex-col gap-10">
     <section class="flex justify-between">
-        <h1 class="text-2xl text-downriver font-semibold">Projects</h1>
+        <h1 class="text-2xl text-downriver font-semibold">Deleted Projects</h1>
         <div id='actionButtons' class="invisible">
             <x-button.circle @click="deselectAll" primary icon="x" />
-            <x-button @click="doDeleteSelectedProjects" icon="trash" primary flat label="Move to trash" />
+            <x-button @click="restoreSelected" icon="reply" primary flat label="Restore" />
+            <x-button @click="deletePermanentlySelected" icon="trash" primary flat label="Delete permanently" />
         </div>
     </section>
-    <section class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+    <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($projects as $project)
             <article id="project_{{ $project->id }}" class="group w-full h-96 rounded-lg shadow-lg bg-cover" style="background-image: url('{{ $project->getFirstMediaUrl('images') }}')">
-                <section class="relative w-full h-full flex flex-col gap-4 justify-end p-8 bg-gradient-to-t from-white">
+                <section class="w-full h-full flex flex-col gap-4 justify-end p-8 bg-gradient-to-t from-white relative">
                     <button @click="selectItem('{{ $project->id }}', event)" class="invisible group-hover:visible absolute top-3 right-3">
                         <x-icon class="cursor-pointer w-6 h-6 fill-white" name="check-circle" solid />
                     </button>
                     <p class="invisible group-hover:visible transition-all duration-400 translate-y-14 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 text-downriver text-xs text-ellipsis [text-shadow:_0_1px_0_rgb(255_255_255_/_40%)]">
                         {{ $project->description }}
                     </p>
-                    <span class="rounded-md bg-clip-text text-downriver font-bold [text-shadow:_0_1px_0_rgb(255_255_255_/_40%)]">{{ $project->title }}</span>
-                    <div class="flex justify-between gap-3">
-                        @if ($project->published)
-                            <x-icon class="w-6 h-6 text-downriver" name="status-online" solid />
-                        @else
-                            <x-icon class="w-6 h-6 text-bittersweet" name="status-offline" solid />
-                        @endif
-                        <div class="flex gap-3">
-                            <a href="/projects/{{ $project->id }}/edit">
-                                <x-icon class="w-6 h-6 text-manatee" name="pencil" solid />
-                            </a>
-                        </div>
-                    </div>
+                    <p class="rounded-md bg-clip-text text-downriver font-bold [text-shadow:_0_1px_0_rgb(255_255_255_/_40%)]">{{ $project->title }} by <span class="text-bittersweet">{{ $project->user->name }}</span></p>
                 </section>
             </article>
         @empty
-            <span class="text-manatee text-sm self-center">You dont have any project</span>
+            <span class="text-manatee text-sm self-center">You don't have any deleted project</span>
         @endforelse
     </section>
     <section class="text-sm text-manatee">
@@ -97,15 +86,27 @@
             updateButtons()
         }
 
-        function doDeleteSelectedProjects() {
+        function restoreSelected() {
             var data = [
                 itemsSelected,
-                'deleteSelectedProjects',
-                'Are you sure you want to move these items to the trash?',
-                'Move to trash'
+                'restoreSelected',
+                'You want to restore selected items?',
+                'Restore Selected'
+            ]
+            this.$dispatch('showPopup', data)
+            itemsSelected = []
+        }
+
+        function deletePermanentlySelected() {
+            var data = [
+                itemsSelected,
+                'deletePermanentlySelected',
+                'Delete Selected Projects',
+                'Delete permanently'
             ]
             this.$dispatch('showPopup', data)
             itemsSelected = []
         }
     </script>
 </div>
+

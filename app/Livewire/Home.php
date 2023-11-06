@@ -31,10 +31,10 @@ class Home extends Component
         }
     }
 
-    #[On('search')]
-    public function search($text)
+    #[On('searchh')]
+    public function searchh($text)
     {
-        info($text);
+        info('event asjsfadkjfsadjkfsdjksfadjk');
     }
 
     public function render()

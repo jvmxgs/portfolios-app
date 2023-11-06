@@ -7,8 +7,7 @@
             <ul class="flex flex-col gap-3">
                 <livewire:navlink to="/projects/create" label="New">
                 <livewire:navlink to="/projects" label="Explore">
-                <livewire:navlink to="/projects/scheduled" label="Scheduled">
-                <livewire:navlink to="/projects/trash" label="Trash">
+                <livewire:navlink to="/projects/trashed" label="Trash">
             </ul>
         </aside>
         <section class="bg-white rounded-xl p-9 grow">
