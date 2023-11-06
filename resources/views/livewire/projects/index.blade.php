@@ -10,7 +10,7 @@
         @forelse ($projects as $project)
             <article id="project_{{ $project->id }}" class="group w-full h-96 rounded-lg shadow-lg bg-cover" style="background-image: url('{{ $project->getFirstMediaUrl('images') }}')">
                 <section class="relative w-full h-full flex flex-col gap-4 justify-end p-8 bg-gradient-to-t from-white">
-                    <button @click="selectItem('{{ $project->id }}', event)" class="invisible group-hover:visible absolute top-3 right-3">
+                    <button @click="selectItem('{{ $project->id }}', event)" class="invisible group-hover:visible absolute top-3 right-3 bg-downriver rounded-full">
                         <x-icon class="cursor-pointer w-6 h-6 fill-white" name="check-circle" solid />
                     </button>
                     <p class="invisible group-hover:visible transition-all duration-400 translate-y-14 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 text-downriver text-xs text-ellipsis [text-shadow:_0_1px_0_rgb(255_255_255_/_40%)]">
@@ -67,6 +67,7 @@
             art.classList.toggle('border-4')
             art.classList.toggle('border-bittersweet')
             btn.classList.toggle('invisible')
+            btn.classList.toggle('bg-downriver')
             icon.classList.toggle('fill-white')
             icon.classList.toggle('fill-bittersweet')
         }

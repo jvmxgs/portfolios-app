@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\HtmlString;
 
 class ProjectRestoredNotification extends Notification implements ShouldQueue
 {
@@ -36,11 +37,16 @@ class ProjectRestoredNotification extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $listItems = '';
+        foreach ($this->projectNames as $projectName) {
+            $listItems .= "<li>{$projectName}</li>";
+        }
+
         return (new MailMessage)
             ->subject(count($this->projectNames) . ' Projects Restored from Trash')
             ->greeting('Hello,')
             ->line('The following projects have been restored from the trash:')
-            ->line(implode(', ', $this->projectNames))
+            ->line(new HtmlString('<ul>' . $listItems . '</ul>'))
             ->action('View Restored Projects', url('/projects'))
             ->line('You can visit the link above to view your projects.')
             ->line('Thank you for using our application! If you have any questions or need assistance, please contact our support team.');

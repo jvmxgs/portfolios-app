@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\HtmlString;
 
-class ProjectDeletedNotification extends Notification implements ShouldQueue
+class ProjectDeletedAutomaticallyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -43,12 +43,10 @@ class ProjectDeletedNotification extends Notification implements ShouldQueue
         }
 
         return (new MailMessage)
-            ->subject(count($this->projectNames) . ' Projects deleted permanently')
+            ->subject(count($this->projectNames) . ' Projects Deleted Automatically')
             ->greeting('Hello,')
-            ->line('The following projects have been deleted permanently:')
+            ->line('We wanted to inform you that your projects has been automatically deleted after 30 days in the trash.')
             ->line(new HtmlString('<ul>' . $listItems . '</ul>'))
-            ->action('Your Projects', url('/projects'))
-            ->line('You can visit the link above to view your projects.')
             ->line('Thank you for using our application! If you have any questions or need assistance, please contact our support team.');
     }
 
