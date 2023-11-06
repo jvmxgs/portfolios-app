@@ -84,3 +84,7 @@ npm run build
 - Url: http://localhost:8080
 - Email: jhon@example.com
 - Password: secret
+
+#### Using Mailpit
+If you are using Laravel Sail, you may preview your messages using Mailpit. When Sail is running, you may access the Mailpit interface at: http://localhost:8025.
+
